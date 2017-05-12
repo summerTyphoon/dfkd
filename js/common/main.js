@@ -40,16 +40,20 @@
             // 依赖jQuery的模块
             jquery:'lib/jquery/jquery.min',
             bootstrap:'lib/bootstrap/js/bootstrap.min',
-            jquery_form:'lib/jquery-form/jquery.form'
+            jquery_form:'lib/jquery-form/jquery.form',
 
             // 不依赖jQuery的模块
-
+            template:'lib/artTemplate/template'
         },
 
         shim:{
             // bootstrap 是普通模块，配置对jQuery的依赖
             bootstrap:{
                 deps:['jquery']
+            },
+            // template 是普通模块，配置输出参数
+            template:{
+                exports:'template'
             }
         }
     });
