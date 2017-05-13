@@ -44,7 +44,8 @@
             jquery_cookie:'lib/jquery-cookie/jquery.cookie',
 
             // 不依赖jQuery的模块
-            template:'lib/artTemplate/template'
+            template:'lib/artTemplate/template',
+            nprogress:'lib/nprogress/nprogress'
         },
 
         shim:{

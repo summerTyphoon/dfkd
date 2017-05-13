@@ -1,7 +1,15 @@
 /**
  * Created by 11070 on 2017/5/11.
  */
-define(['bootstrap','jquery','jquery_form','jquery_cookie'],function(ud,$,ud,ud){
+define(['bootstrap','jquery','jquery_form','jquery_cookie','util'],function(ud,$,ud,ud,util){
+
+    // 进度条
+    util.nprogress();
+
+    // 正在加载的动画
+    util.loading();
+
+    // 点击登录
     $('#login-form').ajaxForm({
         success: function (data) {
             // jquery_cookie 依赖于jquery，没有输出值
