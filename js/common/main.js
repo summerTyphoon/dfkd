@@ -41,6 +41,7 @@
             jquery:'lib/jquery/jquery.min',
             bootstrap:'lib/bootstrap/js/bootstrap.min',
             jquery_form:'lib/jquery-form/jquery.form',
+            jquery_cookie:'lib/jquery-cookie/jquery.cookie',
 
             // 不依赖jQuery的模块
             template:'lib/artTemplate/template'
