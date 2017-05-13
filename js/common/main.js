@@ -77,7 +77,7 @@
         '/html/course/course_add_step1.html':'csAdd1',
         '/html/course/course_add_step2.html':'csAdd2',
         '/html/course/course_add_step3.html':'csAdd3',
-        '/html/course/list.html':'csList',
+        '/html/course/list.html':'csList'
     }
 // 根据加载页面的location.pathname确定加载的是什么页面，到obj中找到需要加载的js模块别名
     require([obj[location.pathname]]);
