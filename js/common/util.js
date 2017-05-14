@@ -49,6 +49,14 @@ define(['jquery_cookie','nprogress'],function(ud,NProgress){
                 }).on('ajaxStop',function(){
                     $('.overlay').hide();
                 })
+            },
+            // 获取url上search值的函数
+            getSearchInfo:function(search){
+                var searchobj = {};
+                search.slice(1).split('&').forEach(function(value){
+                    searchobj[value.split('=')[0]] = value.split('=')[1];
+                })
+                return searchobj;
             }
         }
     // [] 为可能传入的参数，在这里不需要参数
@@ -60,6 +68,7 @@ define(['jquery_cookie','nprogress'],function(ud,NProgress){
             //result[key] = util[key]();
             result[key] = util[key].apply(util,methods[key]);// 用apply方法遍历传入的参数
         }
+         return result;
     }
 
 });

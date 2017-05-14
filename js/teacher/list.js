@@ -61,7 +61,7 @@ define(['bootstrap','jquery','jquery_form','template','aside','header','util'],f
 
                 // 模板筛选helper
                 template.helper('gender',function(n){
-                    return n == 0 ? '男' : '女';
+                    return ""+n === '0' ? '男' : '女';
                 });
                 template.helper('age',function(n){
                     return new Date().getFullYear() - n.slice(0, 4);
