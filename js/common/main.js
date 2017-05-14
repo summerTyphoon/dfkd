@@ -52,10 +52,6 @@
             // bootstrap 是普通模块，配置对jQuery的依赖
             bootstrap:{
                 deps:['jquery']
-            },
-            // template 是普通模块，配置输出参数
-            template:{
-                exports:'template'
             }
         }
     });

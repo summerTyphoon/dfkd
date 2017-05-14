@@ -3,11 +3,8 @@
  */
 
 define(['bootstrap','jquery','jquery_form','template','aside','header','util'],function(ud,$,ud,template,un,ud,util) {
-    // 进度条
-    util.nprogress();
-
-    // 正在加载的动画
-    util.loading();
+    // 公共方法的调用
+    var result = util({'checkLoginStatus':[],'nprogress':[],'loading':[]});
 
 
     var id = location.search.slice(parseInt(location.search.indexOf('=')+1));
@@ -25,15 +22,15 @@ define(['bootstrap','jquery','jquery_form','template','aside','header','util'],f
                 $('input[name=tc_join_date]').val(data.result.tc_join_date);
 
                 if(data.result.tc_type==='1'){
-                    $('select[name=tc_type] option').eq(1).attr('selected','selected');
-                }else{
                     $('select[name=tc_type] option').eq(0).attr('selected','selected');
+                }else{
+                    $('select[name=tc_type] option').eq(1).attr('selected','selected');
                 }
 
                 if(data.result.tc_gender==='1'){
-                    $('input[name=tc_gender]').eq(0).attr('checked','checked');
-                }else{
                     $('input[name=tc_gender]').eq(1).attr('checked','checked');
+                }else{
+                    $('input[name=tc_gender]').eq(0).attr('checked','checked');
                 }
             }
         });

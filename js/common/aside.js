@@ -48,7 +48,10 @@ define(['jquery','jquery_cookie'],function($,ud){
     //if(!$('.aside .navs a').filter(function(index){if(index>=0&&index<=2){return true}}).is('.active')){
     //    $('.kechengguanli').next().slideDown();
     //}
-    if(!$('.aside .navs a:lt(3)').is('.active')){
+    //if(!$('.aside .navs a:lt(3)').is('.active')){
+    //    $('.kechengguanli').next().slideDown();
+    //}
+    if($('.aside .navs a:gt(3)').is('.active')){
         $('.kechengguanli').next().slideDown();
     }
 });

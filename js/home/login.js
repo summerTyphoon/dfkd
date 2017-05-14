@@ -2,12 +2,8 @@
  * Created by 11070 on 2017/5/11.
  */
 define(['bootstrap','jquery','jquery_form','jquery_cookie','util'],function(ud,$,ud,ud,util){
-
-    // 进度条
-    util.nprogress();
-
-    // 正在加载的动画
-    util.loading();
+    // 公共方法的调用
+    var result = util({'nprogress':[],'loading':[]});
 
     // 点击登录
     $('#login-form').ajaxForm({
