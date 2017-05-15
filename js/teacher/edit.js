@@ -6,7 +6,7 @@ define(['bootstrap','jquery','jquery_form','template','aside','header','util'],f
     // 公共方法的调用
     var result = util({'checkLoginStatus':[],'nprogress':[],'loading':[],'getSearchInfo':[location.search]});
 
-var id = result.getSearchInfo.tc_id;
+    var id = result.getSearchInfo.tc_id;
 
     // 以下是编辑讲师
     if(id){
@@ -27,8 +27,7 @@ var id = result.getSearchInfo.tc_id;
                 data:{
                   'tc_id':id
                 },
-                success:function(data){
-                    console.log(data);
+                success:function(){
                     location.href = '/html/teacher/list.html';
                 }
             })
@@ -36,8 +35,7 @@ var id = result.getSearchInfo.tc_id;
         // 在没有传入id时，点击添加按钮，为添加
         // 以下是添加讲师
             $('#tcEidt').ajaxForm({
-                success:function(data){
-                    console.log(data);
+                success:function(){
                     location.href = '/html/teacher/list.html';
                 }
             })

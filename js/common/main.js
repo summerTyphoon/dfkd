@@ -42,6 +42,8 @@
             bootstrap:'lib/bootstrap/js/bootstrap.min',
             jquery_form:'lib/jquery-form/jquery.form',
             jquery_cookie:'lib/jquery-cookie/jquery.cookie',
+            jquery_uploadify:'lib/uploadify/jquery.uploadify',
+            jquery_region:'lib/jquery-region/jquery.region',
 
             // 不依赖jQuery的模块
             template:'lib/artTemplate/template',

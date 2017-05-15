@@ -6,16 +6,14 @@ define(['bootstrap','jquery','jquery_form','template','aside','header','util'],f
     var result = util({'checkLoginStatus':[],'nprogress':[],'loading':[]});
 
     // 进入页面的初始化
+    // 讲师列表
     loadTcList();
-    // 编辑讲师
-    $('#tcListTbody').on('click', '.tcEditBtn', function (event) {
-        var id = event.target.parentNode.parentNode.firstElementChild.innerHTML;
-        location.href = '/html/teacher/edit.html?tc_id=' + id;
-    })
+    // 编辑讲师直接在a标签的href上加入id，并实现跳转
+
 
     // 查看讲师信息
     $('#tcListTbody').on('click', '.tcViewBtn', function (event) {
-        var id = event.target.parentNode.parentNode.firstElementChild.innerHTML;
+        var id = $(this).parent().parent().children(0).attr('data-id');
         $.ajax({
             url:'/v6/teacher/view',
             type:'get',
@@ -30,7 +28,7 @@ define(['bootstrap','jquery','jquery_form','template','aside','header','util'],f
 
     // 注销/启用讲师
     $('#tcListTbody').on('click', '.tcLogoutBtn', function (event) {
-        var id = event.target.parentNode.parentNode.firstElementChild.innerHTML;
+        var id = $(this).parent().parent().children(0).attr('data-id');
         var status = event.target.innerHTML=='注销'?0:1;
         $.ajax({
             url:'/v6/teacher/handle',
