@@ -5,6 +5,8 @@
     <title>学IT - 后台管理系统</title>
     <!-- 引入css文件 -->
     <?php include($_SERVER['DOCUMENT_ROOT'] . '/html/common/style.html')?>
+    <!-- 日期插件的css -->
+    <link rel="stylesheet" href="/lib/bootstrap-datepicker/css/bootstrap-datepicker3.min.css"/>
 </head>
 <body>
 
@@ -126,7 +128,9 @@
     <div class="form-group">
         <label for="" class="col-xs-3 control-label">头像</label>
         <div class="col-xs-2 preview">
-            <img src="{{result.tc_avatar}}">
+            <!--<img src="{{result.tc_avatar}}">-->
+            <!-- 以下缺省图片路径必须加引号 -->
+            <img src="{{result.tc_avatar?result.tc_avatar:'/img/default.png'}}">
             <input type="file" id="upfile">
             <div class="cover">
                 <i class="fa fa-upload"></i>

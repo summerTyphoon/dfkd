@@ -44,6 +44,8 @@
             jquery_cookie:'lib/jquery-cookie/jquery.cookie',
             jquery_uploadify:'lib/uploadify/jquery.uploadify',
             jquery_region:'lib/jquery-region/jquery.region',
+            jquery_datepicker:'/lib/bootstrap-datepicker/js/bootstrap-datepicker.min',
+            jquery_datepicker_CN:'lib/bootstrap-datepicker/locales/bootstrap-datepicker.zh-CN.min',
 
             // 不依赖jQuery的模块
             template:'lib/artTemplate/template',
@@ -54,7 +56,15 @@
             // bootstrap 是普通模块，配置对jQuery的依赖
             bootstrap:{
                 deps:['jquery']
-            }
+            },
+            // 日期插件
+            jquery_uploadify:{
+                deps:['jquery']
+            },
+            // 日期插件的语言包
+            jquery_datepicker_CN:{
+                deps:['jquery','jquery_datepicker']
+            },
         }
     });
 

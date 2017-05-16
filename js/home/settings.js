@@ -2,8 +2,8 @@
  * Created by 11070 on 2017/5/11.
  */
 define(['bootstrap','jquery','jquery_form','template','aside','header',
-        'util','jquery_uploadify','jquery_cookie','jquery_region'],
-    function(ud,$,ud,template,un,ud,util,ud,ud,ud) {
+        'util','jquery_uploadify','jquery_cookie','jquery_region','jquery_datepicker','jquery_datepicker_CN'],
+    function(ud,$,ud,template,un,ud,util,ud,ud,ud,ud,ud) {
     // 公共方法的调用
     var result = util({'checkLoginStatus':[],'nprogress':[],'loading':[]});
 
@@ -50,6 +50,7 @@ define(['bootstrap','jquery','jquery_form','template','aside','header',
                     $('#upfile').prev().attr('src',path);
                     // 上传成功后cookie中保存的头像地址改变，以便在再次加载时改变头像
                     // 为什么在别人改了之后，我再进设置页面，左上角的头像不是别人改的图片？而是我之前设置的？
+                    $.removeCookie('courierInfo');
                     var obj = JSON.parse($.cookie('courierInfo'));
                     obj.tc_avatar = path;
                     $.cookie('courierInfo',JSON.stringify(obj));
@@ -65,7 +66,7 @@ define(['bootstrap','jquery','jquery_form','template','aside','header',
             // 修改资料
             $(document.body).on('click','#baocun',function(){
                 var id = $("#baocun")[0].dataset.id;
-                var hometown = $("select[name='tc_province']").val()+$("select[name='tc_city']").val()+$("select[name='tc_district']").val();
+                var hometown = $("select[name='tc_province'] option[selected]").text()+'-'+$("select[name='tc_city'] option[selected]").text()+'-'+$("select[name='tc_district'] option[selected]").text();
 
                 $('#settingsForm').ajaxSubmit({
                     data:{
@@ -96,6 +97,19 @@ define(['bootstrap','jquery','jquery_form','template','aside','header',
                 //})
             })
 
+            // 日期插件的调用
+            $('input[name="tc_birthday"]').datepicker({
+                language: 'zn-CN',
+                format: 'yyyy-mm-dd',
+                startDate:new Date('1949-10-1'),
+                endDate:new Date('1999-12-31')
+            });
+            $('input[name="tc_join_date"]').datepicker({
+                language: 'zn-CN',
+                format: 'yyyy-mm-dd',
+                startDate:new Date('2008-1-1'),
+                endDate:new Date()
+            });
 
 
         }
