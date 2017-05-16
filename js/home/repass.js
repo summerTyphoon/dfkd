@@ -16,10 +16,12 @@ define(['bootstrap','jquery','jquery_form','template','aside','header','util','j
     $('#changepassword').ajaxForm({
         success:function(data){
             console.log(data);
-            // 在全域删除cookie
-            $.removeCookie('PHPSESSID',{path:'/'});
-            alert('密码修改成功，请重新登录');
-            location.href = '/html/home/login.html';
+            // 调用退出方法
+            $('#logout').trigger('click');
+            //// 在全域删除cookie
+            //$.removeCookie('PHPSESSID',{path:'/'});
+            //alert('密码修改成功，请重新登录');
+            //location.href = '/html/home/login.html';
         }
     })
 

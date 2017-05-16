@@ -41,8 +41,11 @@ define(['bootstrap','jquery','jquery_form','template','aside','header',
                 uploader: '/v6/uploader/avatar',
                 fileTypeExts: '*.gif; *.jpg; *.png',
                 fileObjName:'tc_avatar',
-                buttonText:'点击上传',
-                //auto:false,//还是自动上传比较方便
+                buttonText:'',
+                // wmode:'transparent',
+                // uploadify不需要引入css文件，不引入没有默认的按钮样式，不会遮挡图片
+                height:$('.preview').height(),
+                // auto:false,//还是自动上传比较方便
                 onUploadSuccess:function(fileobj,data){
                     console.log('上传图片成功')
                     var path = JSON.parse(data).result.path;
@@ -50,7 +53,7 @@ define(['bootstrap','jquery','jquery_form','template','aside','header',
                     $('#upfile').prev().attr('src',path);
                     // 上传成功后cookie中保存的头像地址改变，以便在再次加载时改变头像
                     // 为什么在别人改了之后，我再进设置页面，左上角的头像不是别人改的图片？而是我之前设置的？
-                    $.removeCookie('courierInfo');
+                    $.removeCookie('courierInfo'); // 这个代码为什么写在这里？忘了
                     var obj = JSON.parse($.cookie('courierInfo'));
                     obj.tc_avatar = path;
                     $.cookie('courierInfo',JSON.stringify(obj));
