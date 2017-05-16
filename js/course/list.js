@@ -5,4 +5,8 @@ define(['bootstrap','jquery','jquery_form','template','aside','header','util'],f
     // 公共方法的调用
     var result = util({'checkLoginStatus':[],'nprogress':[],'loading':[]});
 
+    // 课程列表加载
+    $.get('/v6/course',function(data){
+        $('.courses').html(template('csList_temp',data));
+    })
 })
