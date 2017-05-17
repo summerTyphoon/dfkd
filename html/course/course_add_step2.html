@@ -5,6 +5,8 @@
     <title>学IT - 后台管理系统</title>
     <!-- 引入css文件 -->
     <?php include($_SERVER['DOCUMENT_ROOT'] . '/html/common/style.html')?>
+    <!-- 引入裁剪图片的css文件 -->
+    <link rel="stylesheet" href="/lib/Jcrop-v0.9.12/css/jquery.Jcrop.min.css"/>
 </head>
 <body>
 
@@ -72,7 +74,7 @@
         <!-- 上传图片 -->
         <div class="picture col-xs-offset-2">
             <div class="preview">
-                <img src="{{ cs_cover_original?cs_cover_original: '/img/course.png'}}" alt="">
+                <img id="bigimg" src="{{ cs_cover_original?cs_cover_original: '/img/course.png'}}" alt="">
             </div>
             <p class="tips">
                 可上传jpg, gif, png格式文件, 图片建议尺寸大于300x150，文件大小不能超过2M。
@@ -82,7 +84,7 @@
                 <button id="uploadify" class="btn btn-success btn-sm">选择图片</button>
             </div>
             <div class="col-xs-2">
-                <a href="javascript:;" class="btn btn-warning btn-sm" disabled>裁切图片</a>
+                <button class="btn btn-warning btn-sm" id="jcropbtn">裁切图片</button>
             </div>
         </div>
     </div>

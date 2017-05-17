@@ -46,6 +46,7 @@
             jquery_region:'lib/jquery-region/jquery.region',
             jquery_datepicker:'/lib/bootstrap-datepicker/js/bootstrap-datepicker.min',
             jquery_datepicker_CN:'lib/bootstrap-datepicker/locales/bootstrap-datepicker.zh-CN.min',
+            jquery_jcrop:'lib/Jcrop-v0.9.12/js/jquery.Jcrop.min',
 
             // 不依赖jQuery的模块
             template:'lib/artTemplate/template',
@@ -64,6 +65,9 @@
             // 日期插件的语言包
             jquery_datepicker_CN:{
                 deps:['jquery','jquery_datepicker']
+            },
+            jquery_jcrop:{
+                deps:['jquery']
             },
         }
     });
