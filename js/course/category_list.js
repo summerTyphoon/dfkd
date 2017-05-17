@@ -5,5 +5,12 @@ define(['bootstrap','jquery','jquery_form','template','aside','header','util'],f
     // 公共方法的调用
     var result = util({'checkLoginStatus':[],'nprogress':[],'loading':[]});
 
+    // 课程列表的回显
+    $.get('/v6/category',function(data){
+        $('tbody').html(template('cgListTemp',data));
+
+        // 点击编辑进入添加分类的页面,有a标签实现
+
+    })
 
 })
