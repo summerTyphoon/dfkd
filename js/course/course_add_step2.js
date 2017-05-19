@@ -1,7 +1,8 @@
 /**
  * Created by 11070 on 2017/5/11.
  */
-define(['bootstrap', 'jquery', 'jquery_form', 'template', 'aside', 'header', 'util', 'jquery_uploadify', 'jquery_jcrop'], function (ud, $, ud, template, un, ud, util, ud, ud) {
+//define(['bootstrap', 'jquery', 'jquery_form', 'template', 'aside', 'header', 'util', 'jquery_uploadify', 'jquery_jcrop'], function (ud, $, ud, template, un, ud, util, ud, ud) {
+    define(['bootstrap', 'jquery', 'jquery_form', 'template', 'aside', 'header', 'util', 'jquery_uploadify', 'jquery_jcrop2'], function (ud, $, ud, template, un, ud, util, ud, ud) {
     // 公共方法的调用
     var result = util({'checkLoginStatus': [], 'nprogress': [], 'loading': [], 'getSearchInfo': [location.search]});
     var cs_id = result.getSearchInfo['cs_id'];
@@ -11,36 +12,69 @@ define(['bootstrap', 'jquery', 'jquery_form', 'template', 'aside', 'header', 'ut
         // 上传图片
         initpicture();
         // 裁剪图片
-        cropImg();
+        //cropImg();
+
+        Jcrop();
     })
 
     function cropImg() {
-
-        var api;
+        var J;
         $(document).on('click', '#jcropbtn', function () {
             // 图片剪切
-            if($(this).html()=='裁切图片'){
-                api = $.Jcrop('#bigimg', {
+                J = $.Jcrop('#bigimg', {
                     aspectRatio: 2,
-                    setSelect: [10, 10, 300, 300],
+                    setSelect: [0, 0, 300, 150],
                     bgColor: 'block',
-                    edge: {n: 10, s: 10, e: 10, w: 10},
+                    //edge: {n: 10, s: 10, e: -10, w: -10},
                 });
-                $(this).html('保存图片');
-            }else{
-                console.log(api.tellSelect());
-                $(this).html('裁切图片');
-                $.post('/v6/course/update/picture',{
-                    cs_id:cs_id,
-                    x:api.tellSelect().x,
-                    y:api.tellSelect().y,
-                    w:api.tellSelect().w,
-                    h:api.tellSelect().h
-                },function(data){
-                    console.log(data)
-                    location.href = '/html/course/course_add_step3.html?cs_id=' + cs_id;
-                });
-            }
+                // 用自己下载的0.9.12的插件不能调用老师给的方法
+                //J.initComponent('Thumbnailer', { width: $('.thumb').width, height: $('.thumb').height ,thumb:'.thumb'})
+        })
+        $(document).on('click','#save',function(){
+            $.post('/v6/course/update/picture',{
+                cs_id:cs_id,
+                x:J.tellSelect().x,
+                y:J.tellSelect().y,
+                w:J.tellSelect().w,
+                h:J.tellSelect().h
+            },function(data){
+                console.log(data)
+                location.href = '/html/course/course_add_step3.html?cs_id=' + cs_id;
+            });
+        })
+    }
+
+    function Jcrop(){
+        var J = null;
+        $(document).on('click','#jcropbtn',function(){
+            $('#bigimg').Jcrop({
+                aspectRatio: 2,                    // 设置选取图片的宽高比
+                setSelect: [ 0, 0, 600, 300 ],     // 设置默认的选区
+                bgColor: 'skyblue',
+                minSize: [300, 150],               // 限制选取图片的最小宽高
+                //maxSize:[$('.preview').width(),$('.preview').height()],
+                boxWidth:$('.preview').width(),
+            },function(){
+                J = this;
+
+                J.initComponent('Thumbnailer', { width: $('.thumb').width(), height: $('.thumb').height(), thumb:'.thumb' })
+                //thumbnail = this.initComponent('Thumbnailer', { width: $('.thumb').width, height: $('.thumb').height });
+                // 添加缩略图，会自动生成一个.jcrop-thumb的div，用来展示缩略图，把该div手动放到.thumb中。
+                $('.thumb').empty().append($('.jcrop-thumb'));
+            });
+        })
+
+        $(document).on('click','#save',function(){
+            var result = J.getSelection();
+            $.post('/v6/course/update/picture', {
+                cs_id: cs_id,
+                x: result.x,
+                y: result.y,
+                w: result.w,
+                h: result.h
+            }, function() {
+                location.href = '/html/course/course_add_step3.html?cs_id=' + cs_id;
+            });
         })
     }
 

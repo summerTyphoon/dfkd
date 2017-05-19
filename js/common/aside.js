@@ -41,9 +41,12 @@ define(['jquery','jquery_cookie'],function($,ud){
     }
 
     var href = pathToHref[pathName];
-    $('.aside .navs a').removeClass('active').filter('[href="'+href+'"]').addClass('active');
+    $('.aside .navs a').removeClass('active')
+                        .filter('[href="'+href+'"]').addClass('active')
+                        .parentsUntil('.navs').slideDown();
 
 
+    // 这种方法在有多层嵌套时就不好实现了，用.parentsUntil比较方便
     // 如果焦点在下拉列表中，则下拉列表是展开状态
     //if(!$('.aside .navs a').filter(function(index){if(index>=0&&index<=2){return true}}).is('.active')){
     //    $('.kechengguanli').next().slideDown();
@@ -51,7 +54,8 @@ define(['jquery','jquery_cookie'],function($,ud){
     //if(!$('.aside .navs a:lt(3)').is('.active')){
     //    $('.kechengguanli').next().slideDown();
     //}
-    if($('.aside .navs a:gt(3)').is('.active')){
-        $('.kechengguanli').next().slideDown();
-    }
+
+    //if($('.aside .navs a:gt(3)').is('.active')){
+    //    $('.kechengguanli').next().slideDown();
+    //}
 });

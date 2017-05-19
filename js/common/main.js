@@ -47,6 +47,8 @@
             jquery_datepicker:'/lib/bootstrap-datepicker/js/bootstrap-datepicker.min',
             jquery_datepicker_CN:'lib/bootstrap-datepicker/locales/bootstrap-datepicker.zh-CN.min',
             jquery_jcrop:'lib/Jcrop-v0.9.12/js/jquery.Jcrop.min',
+            jquery_jcrop2:'lib/jquery-Jcrop/js/Jcrop.min',
+            jquery_ckeditor:'lib/jquery-ckeditor/ckeditor',
 
             // 不依赖jQuery的模块
             template:'lib/artTemplate/template',
@@ -68,6 +70,13 @@
             },
             jquery_jcrop:{
                 deps:['jquery']
+            },
+            jquery_jcrop2:{
+                deps:['jquery']
+            },
+            jquery_ckeditor:{
+                deps:['jquery'],
+                exports:'CKEDITOR'
             },
         }
     });

@@ -17,6 +17,7 @@ define(['bootstrap','jquery','jquery_form','template','aside','header','util','j
         success:function(data){
             console.log(data);
             // 调用退出方法
+            // trigger 触发事件
             $('#logout').trigger('click');
             //// 在全域删除cookie
             //$.removeCookie('PHPSESSID',{path:'/'});

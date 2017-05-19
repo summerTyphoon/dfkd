@@ -2,8 +2,8 @@
  * Created by 11070 on 2017/5/11.
  */
 define(['bootstrap','jquery','jquery_form','template','aside','header',
-        'util','jquery_uploadify','jquery_cookie','jquery_region','jquery_datepicker','jquery_datepicker_CN'],
-    function(ud,$,ud,template,un,ud,util,ud,ud,ud,ud,ud) {
+        'util','jquery_uploadify','jquery_cookie','jquery_region','jquery_datepicker','jquery_datepicker_CN','jquery_ckeditor'],
+    function(ud,$,ud,template,un,ud,util,ud,ud,ud,ud,ud,CKEDITOR) {
     // 公共方法的调用
     var result = util({'checkLoginStatus':[],'nprogress':[],'loading':[]});
 
@@ -18,6 +18,14 @@ define(['bootstrap','jquery','jquery_form','template','aside','header',
             $('#region-container').region({
                 url: '/lib/jquery-region/region.json'
             });
+
+
+            // 富文本插件
+            // 提供了一个replace方法，替换掉文本域
+            // 第一个参数是文本域的id，只支持id，不要加#
+            // 第二个参数是一个对象，可以进行配置，可以不写。对象有一个toolbarGroup参数，可以设置功能列表
+
+            var edit = CKEDITOR.replace("ckeditor");
 
 
 
@@ -68,6 +76,8 @@ define(['bootstrap','jquery','jquery_form','template','aside','header',
 
             // 修改资料
             $(document.body).on('click','#baocun',function(){
+                // 在点击提交时，把富文本框中的文本更新到文本域中
+                edit.updateElement();
                 var id = $("#baocun")[0].dataset.id;
                 var hometown = $("select[name='tc_province'] option[selected]").text()+'-'+$("select[name='tc_city'] option[selected]").text()+'-'+$("select[name='tc_district'] option[selected]").text();
 
